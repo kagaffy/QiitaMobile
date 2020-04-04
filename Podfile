@@ -6,14 +6,15 @@ target 'QiitaMobile' do
   use_frameworks!
 
   # Pods for QiitaMobile
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
 
   target 'QiitaMobileTests' do
     inherit! :search_paths
-    # Pods for testing
   end
 
   target 'QiitaMobileUITests' do
-    # Pods for testing
+    inherit! :search_paths
   end
 
 end
