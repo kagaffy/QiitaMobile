@@ -8,6 +8,8 @@ target 'QiitaMobile' do
   # Pods for QiitaMobile
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'SwiftDate', '~> 6.0'
 
   target 'QiitaMobileTests' do
     inherit! :search_paths
