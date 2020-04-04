@@ -5,6 +5,10 @@ project.xcworkspace/
 *.xcodeproj
 .DS_Store
 
+## Gem
+.bundle/
+vendor/
+
 ## User settings
 xcuserdata/
 
