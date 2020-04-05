@@ -8,7 +8,6 @@
 import UIKit
 
 final class CardPresentationController: UIPresentationController {
-
     private lazy var blurView = UIVisualEffectView(effect: nil)
 
     // Default is false.
@@ -19,7 +18,7 @@ final class CardPresentationController: UIPresentationController {
     override var shouldRemovePresentersView: Bool {
         return false
     }
-    
+
     override func presentationTransitionWillBegin() {
         let container = containerView!
         blurView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,12 +27,12 @@ final class CardPresentationController: UIPresentationController {
         blurView.alpha = 0.0
 
         presentingViewController.beginAppearanceTransition(false, animated: false)
-        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { (ctx) in
+        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { _ in
             UIView.animate(withDuration: 0.5, animations: {
                 self.blurView.effect = UIBlurEffect(style: .light)
                 self.blurView.alpha = 1
             })
-        }) { (ctx) in }
+        }) { _ in }
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
@@ -42,7 +41,7 @@ final class CardPresentationController: UIPresentationController {
 
     override func dismissalTransitionWillBegin() {
         presentingViewController.beginAppearanceTransition(true, animated: true)
-        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { (ctx) in
+        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { _ in
             self.blurView.alpha = 0.0
         }, completion: nil)
     }

@@ -13,9 +13,9 @@ final class CardTransition: NSObject, UIViewControllerTransitioningDelegate {
         let fromCardFrameWithoutTransform: CGRect
         let fromCell: ArticleCardCell
     }
-    
+
     private let params: Params
-    
+
     init(params: Params) {
         self.params = params
         super.init()
@@ -28,7 +28,7 @@ final class CardTransition: NSObject, UIViewControllerTransitioningDelegate {
         )
         return PresentCardAnimator(params: params)
     }
-    
+
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let params = DismissCardAnimator.Params(
             fromCardFrame: self.params.fromCardFrame,
@@ -37,15 +37,15 @@ final class CardTransition: NSObject, UIViewControllerTransitioningDelegate {
         )
         return DismissCardAnimator(params: params)
     }
-    
+
     func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return nil
     }
-    
+
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return nil
     }
-    
+
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return CardPresentationController(presentedViewController: presented, presenting: presenting)
     }

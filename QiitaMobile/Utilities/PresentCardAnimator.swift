@@ -8,7 +8,6 @@
 import UIKit
 
 final class PresentCardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-
     private let params: Params
 
     struct Params {
@@ -22,8 +21,8 @@ final class PresentCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
 
     init(params: Params) {
         self.params = params
-        self.springAnimator = PresentCardAnimator.createBaseSpringAnimator(params: params)
-        self.presentAnimationDuration = springAnimator.duration
+        springAnimator = PresentCardAnimator.createBaseSpringAnimator(params: params)
+        presentAnimationDuration = springAnimator.duration
         super.init()
     }
 
@@ -38,7 +37,7 @@ final class PresentCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         // Duration between 0.5 (nearer) and 0.9 (nearer)
         let baselineDuration: TimeInterval = 0.5
         let maxDuration: TimeInterval = 0.9
-        let duration: TimeInterval = baselineDuration + (maxDuration - baselineDuration) * TimeInterval(max(0, distanceToBounce)/UIScreen.main.bounds.height)
+        let duration: TimeInterval = baselineDuration + (maxDuration - baselineDuration) * TimeInterval(max(0, distanceToBounce) / UIScreen.main.bounds.height)
 
         let springTiming = UISpringTimingParameters(dampingRatio: damping, initialVelocity: .init(dx: 0, dy: 0))
         return UIViewPropertyAnimator(duration: duration, timingParameters: springTiming)
@@ -96,7 +95,7 @@ final class PresentCardTransitionDriver {
             let animatedContainerConstraints = [
                 animatedContainerView.widthAnchor.constraint(equalToConstant: container.bounds.width),
                 animatedContainerView.heightAnchor.constraint(equalToConstant: container.bounds.height),
-                animatedContainerView.centerXAnchor.constraint(equalTo: container.centerXAnchor)
+                animatedContainerView.centerXAnchor.constraint(equalTo: container.centerXAnchor),
             ]
             NSLayoutConstraint.activate(animatedContainerConstraints)
         }
@@ -111,7 +110,7 @@ final class PresentCardTransitionDriver {
 //            case .fromTop:
 //                return animatedContainerView.topAnchor.constraint(equalTo: container.topAnchor, constant: fromCardFrame.minY)
 //            }
-            return animatedContainerView.topAnchor.constraint(equalTo: container.topAnchor, constant: fromCardFrame.minY)
+            animatedContainerView.topAnchor.constraint(equalTo: container.topAnchor, constant: fromCardFrame.minY)
         }()
         animatedContainerVerticalConstraint.isActive = true
 
@@ -132,12 +131,12 @@ final class PresentCardTransitionDriver {
 //                    // Funny how -1 and 1 work! WTF. You can try set it to 0.
 //                    return cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor, constant: -1)
 //                }
-                return cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor, constant: -1)
+                cardDetailView.topAnchor.constraint(equalTo: animatedContainerView.topAnchor, constant: -1)
             }()
             let cardConstraints = [
                 verticalAnchor,
                 cardDetailView.centerXAnchor.constraint(equalTo: animatedContainerView.centerXAnchor),
-                ]
+            ]
             NSLayoutConstraint.activate(cardConstraints)
         }
         let cardWidthConstraint = cardDetailView.widthAnchor.constraint(equalToConstant: fromCardFrame.width)
@@ -197,7 +196,6 @@ final class PresentCardTransitionDriver {
         }
 
         baseAnimator.addAnimations {
-
             // Spring animation for bouncing up
             animateContainerBouncingUp()
 
@@ -208,22 +206,22 @@ final class PresentCardTransitionDriver {
             cardExpanding.startAnimation()
         }
 
-        baseAnimator.addCompletion { (_) in
+        baseAnimator.addCompletion { _ in
             completeEverything()
         }
 
-        self.animator = baseAnimator
+        animator = baseAnimator
     }
 }
 
 extension UIView {
     /// Constrain 4 edges of `self` to specified `view`.
-    func edges(to view: UIView, top: CGFloat=0, left: CGFloat=0, bottom: CGFloat=0, right: CGFloat=0) {
+    func edges(to view: UIView, top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
         NSLayoutConstraint.activate([
-            self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: left),
-            self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: right),
-            self.topAnchor.constraint(equalTo: view.topAnchor, constant: top),
-            self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom)
+            leftAnchor.constraint(equalTo: view.leftAnchor, constant: left),
+            rightAnchor.constraint(equalTo: view.rightAnchor, constant: right),
+            topAnchor.constraint(equalTo: view.topAnchor, constant: top),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom),
         ])
     }
 }

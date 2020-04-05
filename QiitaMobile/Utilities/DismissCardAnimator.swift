@@ -8,7 +8,6 @@
 import UIKit
 
 final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-
     struct Params {
         let fromCardFrame: CGRect
         let fromCardFrameWithoutTransform: CGRect
@@ -26,7 +25,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         self.params = params
         super.init()
     }
-    
+
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.6
     }
@@ -52,7 +51,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
         cardDetailView.translatesAutoresizingMaskIntoConstraints = false
 
         container.removeConstraints(container.constraints)
-        
+
         container.addSubview(animatedContainerView)
         animatedContainerView.addSubview(cardDetailView)
 
@@ -81,9 +80,9 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             // Back to identity
             // NOTE: Animated container view in a way, helps us to not messing up `transform` with `AutoLayout` animation.
             cardDetailView.transform = CGAffineTransform.identity
-            animatedContainerTopConstraint.constant = self.params.fromCardFrameWithoutTransform.minY
-            animatedContainerWidthConstraint.constant = self.params.fromCardFrameWithoutTransform.width
-            animatedContainerHeightConstraint.constant = self.params.fromCardFrameWithoutTransform.height
+            animatedContainerTopConstraint.constant = params.fromCardFrameWithoutTransform.minY
+            animatedContainerWidthConstraint.constant = params.fromCardFrameWithoutTransform.width
+            animatedContainerHeightConstraint.constant = params.fromCardFrameWithoutTransform.height
             container.layoutIfNeeded()
         }
 
@@ -93,7 +92,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
             animatedContainerView.removeFromSuperview()
             if success {
                 cardDetailView.removeFromSuperview()
-                self.params.fromCell.isHidden = false
+                params.fromCell.isHidden = false
             } else {
 //                screens.cardDetail.isFontStateHighlighted = true
 
@@ -114,7 +113,7 @@ final class DismissCardAnimator: NSObject, UIViewControllerAnimatedTransitioning
 
         UIView.animate(withDuration: transitionDuration(using: ctx), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
             animateCardViewBackToPlace()
-        }) { (finished) in
+        }) { _ in
             completeEverything()
         }
 

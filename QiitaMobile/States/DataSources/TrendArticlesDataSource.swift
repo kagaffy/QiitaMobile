@@ -63,7 +63,7 @@ extension TrendArticlesDataSource: UICollectionViewDataSource, UICollectionViewD
 extension TrendArticlesDataSource: CollectionViewRegister {
     var cellTypes: [UICollectionViewCell.Type] {
         return [
-            ArticleCardCell.self
+            ArticleCardCell.self,
         ]
     }
 }

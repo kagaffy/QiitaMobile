@@ -39,6 +39,5 @@ class ArticleCardContentView: UIView {
         addSubview(view)
     }
 
-    func loadView() {
-    }
+    func loadView() {}
 }

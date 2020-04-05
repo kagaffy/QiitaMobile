@@ -28,7 +28,7 @@ public final class TrendArticle {
             let hasCodeBlock = json["hasCodeBlock"].bool,
             let authorName = json["node"]["author"]["urlName"].string,
             let authorImageUrl = URL(string: json["node"]["author"]["profileImageUrl"].stringValue)
-            else { return nil }
+        else { return nil }
 
         self.id = id
         self.title = title
