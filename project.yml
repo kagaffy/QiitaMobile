@@ -72,6 +72,9 @@ targets:
     type: application
     platform: iOS
     sources: QiitaMobile
+    preBuildScripts:
+      - script: |
+          "${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat" "$SRCROOT"
     settings:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: "AppIcon"
