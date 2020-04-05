@@ -6,6 +6,7 @@ target 'QiitaMobile' do
   use_frameworks!
 
   # Pods for QiitaMobile
+  pod 'SwiftFormat/CLI'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'SwiftyJSON', '~> 4.0'
