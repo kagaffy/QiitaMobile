@@ -1,4 +1,5 @@
 PODS:
+  - HydraAsync (2.0.2)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -9,6 +10,7 @@ PODS:
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
+  - HydraAsync
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
   - SwiftDate (~> 6.0)
@@ -16,6 +18,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - HydraAsync
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -23,12 +26,13 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  HydraAsync: 690b8c1c9dcde7ee1093cee363a6c1ce36b56a83
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: fa9f1d5dbec0fc98f8814e7e57d92a3cc7e204d8
+PODFILE CHECKSUM: c94dee056c0ad2166b1bab576b92d09036fa75f0
 
 COCOAPODS: 1.9.1
