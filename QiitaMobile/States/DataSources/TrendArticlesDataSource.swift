@@ -23,7 +23,7 @@ extension TrendArticlesDataSource: UICollectionViewDataSource, UICollectionViewD
     //
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return store.dailyTrendArticles.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

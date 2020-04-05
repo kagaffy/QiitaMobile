@@ -70,7 +70,16 @@ class TrendArticlesVC: BaseViewController {
         
         collectionView.delaysContentTouches = false
         dataSource.configure(collectionView)
-        
+
+        store.dailyTrendArticlesObservable
+            .map { _ in }
+            .bind(to: Binder(collectionView) { collectionView, _ in
+                collectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+
         _ = showArticleDetailsDisposable
+
+        ActionCreator.fetchTrendArticles()
     }
 }

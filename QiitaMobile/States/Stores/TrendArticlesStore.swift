@@ -23,6 +23,9 @@ final class TrendArticlesStore {
             guard let `self` = self else { return }
 
             switch action {
+            case let .addTrendArticles(articles):
+                self._dailyTrendArticles.accept(articles)
+
             case let .showArticleDetails(cell, article):
                 self._selectedCard.accept((cell, article))
 

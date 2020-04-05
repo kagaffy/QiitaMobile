@@ -44,3 +44,15 @@ public final class TrendArticle {
         return list.compactMap { TrendArticle($0) }
     }
 }
+
+public class GetTrendArticles: PromiseOperation<[TrendArticle]> {
+    public init(type: String = "") {
+        super.init()
+
+        url = URL(string: "https://qiita-api.netlify.com/.netlify/functions/trend")!
+
+        jsonResponse = { json in
+            TrendArticle.load(json.arrayValue)
+        }
+    }
+}
