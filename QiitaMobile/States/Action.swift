@@ -6,4 +6,5 @@
 //
 
 enum Action {
+    case showArticleDetails(ArticleCardCell, TrendArticle)
 }

@@ -37,6 +37,9 @@ extension TrendArticlesDataSource: UICollectionViewDataSource, UICollectionViewD
     //
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ArticleCardCell
+        let article = store.dailyTrendArticles[indexPath.item]
+        ActionCreator.didTapCardArticle(cell: cell, article: article)
     }
 
     //
