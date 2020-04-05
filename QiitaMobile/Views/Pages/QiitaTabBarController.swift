@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class QiitaTabBarController: UITabBarController {
+class QiitaTabBarController: UITabBarController {
     private struct TabBarItem {
         let title: String
         let image: UIImage
@@ -18,7 +18,7 @@ final class QiitaTabBarController: UITabBarController {
         .init(
             title: "トレンド",
             image: #imageLiteral(resourceName: "trend"),
-            rootVC: UIViewController()
+            rootVC: TrendArticlesVC()
         ),
         .init(
             title: "検索",

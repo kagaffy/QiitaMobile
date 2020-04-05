@@ -8,7 +8,7 @@
 import SwiftDate
 import SwiftyJSON
 
-public class TrendArticle {
+public final class TrendArticle {
     public let id: String
     public var title: String
     public var createdAt: DateInRegion
