@@ -11,6 +11,7 @@ target 'QiitaMobile' do
   pod 'RxCocoa', '~> 5'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'SwiftDate', '~> 6.0'
+  pod 'Kingfisher', '~> 5.0'
   pod 'HydraAsync'
 
   target 'QiitaMobileTests' do
