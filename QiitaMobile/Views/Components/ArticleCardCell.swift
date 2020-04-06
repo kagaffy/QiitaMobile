@@ -26,7 +26,9 @@ class ArticleCardCell: UICollectionViewCell, CollectionViewCellPresenter {
         return .init(width: width, height: 100)
     }
 
-    func apply() {}
+    func apply(article: TrendArticle) {
+        articleCardContentView.loadView(article: article)
+    }
 
     func resetTransform() {
         transform = .identity

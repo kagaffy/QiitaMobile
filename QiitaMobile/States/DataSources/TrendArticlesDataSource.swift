@@ -28,7 +28,7 @@ extension TrendArticlesDataSource: UICollectionViewDataSource, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = ArticleCardCell.dequeue(from: collectionView, for: indexPath)
-        cell.apply()
+        cell.apply(article: store.dailyTrendArticles[indexPath.item])
         return cell
     }
 

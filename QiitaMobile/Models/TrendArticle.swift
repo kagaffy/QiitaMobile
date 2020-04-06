@@ -21,7 +21,7 @@ public final class TrendArticle {
     public init?(_ json: JSON) {
         guard
             let id = json["node"]["uuid"].string,
-            let title = json["node"]["uuid"].string,
+            let title = json["node"]["title"].string,
             let createdAt = DateInRegion(json["node"]["createdAt"].stringValue),
             let likesCount = json["node"]["likesCount"].int,
             let isNew = json["isNewArrival"].bool,

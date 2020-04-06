@@ -5,6 +5,7 @@
 //  Created by Tsukada Yoshiki on 2020/04/05.
 //
 
+import Kingfisher
 import UIKit
 
 class ArticleCardContentView: UIView {
@@ -39,5 +40,12 @@ class ArticleCardContentView: UIView {
         addSubview(view)
     }
 
-    func loadView() {}
+    func loadView(article: TrendArticle) {
+        authorImageView.image = nil
+        authorImageView.kf.setImage(with: article.authorImageUrl)
+        titleLabel.text = article.title
+        newLabel.isHidden = !article.isNew
+        authorNameLabel.text = article.authorName
+        likesCountLabel.text = String(article.likesCount)
+    }
 }
