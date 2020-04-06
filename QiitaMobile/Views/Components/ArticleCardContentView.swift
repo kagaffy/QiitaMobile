@@ -45,7 +45,7 @@ class ArticleCardContentView: UIView {
         authorImageView.kf.setImage(with: article.authorImageUrl)
         titleLabel.text = article.title
         newLabel.isHidden = !article.isNew
-        authorNameLabel.text = article.authorName
+        authorNameLabel.text = "@\(article.authorName)"
         likesCountLabel.text = String(article.likesCount)
     }
 }

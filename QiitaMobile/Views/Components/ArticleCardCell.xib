@@ -17,16 +17,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FC-Be-Icw" customClass="ArticleCardContentView" customModule="QiitaMobile" customModuleProvider="target">
-                        <rect key="frame" x="5" y="10" width="438" height="100"/>
+                        <rect key="frame" x="10" y="10" width="428" height="90"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="2FC-Be-Icw" firstAttribute="top" secondItem="WDK-p6-IcM" secondAttribute="top" constant="10" id="9Wb-EW-tSk"/>
-                    <constraint firstItem="2FC-Be-Icw" firstAttribute="leading" secondItem="WDK-p6-IcM" secondAttribute="leading" constant="5" id="FIg-cL-Dhd"/>
-                    <constraint firstAttribute="bottom" secondItem="2FC-Be-Icw" secondAttribute="bottom" id="vE1-GI-qga"/>
-                    <constraint firstAttribute="trailing" secondItem="2FC-Be-Icw" secondAttribute="trailing" constant="5" id="zJ8-LW-Kkp"/>
+                    <constraint firstItem="2FC-Be-Icw" firstAttribute="leading" secondItem="WDK-p6-IcM" secondAttribute="leading" constant="10" id="FIg-cL-Dhd"/>
+                    <constraint firstAttribute="bottom" secondItem="2FC-Be-Icw" secondAttribute="bottom" constant="10" id="vE1-GI-qga"/>
+                    <constraint firstAttribute="trailing" secondItem="2FC-Be-Icw" secondAttribute="trailing" constant="10" id="zJ8-LW-Kkp"/>
                 </constraints>
                 <userDefinedRuntimeAttributes>
                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

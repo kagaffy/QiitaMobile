@@ -72,8 +72,8 @@ final class PresentCardTransitionDriver {
     init(params: PresentCardAnimator.Params, transitionContext: UIViewControllerContextTransitioning, baseAnimator: UIViewPropertyAnimator) {
         let ctx = transitionContext
         let container = ctx.containerView
-        let screens: (home: TrendArticlesVC, cardDetail: ArticleDetailsVC) = (
-            ctx.viewController(forKey: .from)! as! TrendArticlesVC,
+        let screens: (home: QiitaTabBarController, cardDetail: ArticleDetailsVC) = (
+            ctx.viewController(forKey: .from)! as! QiitaTabBarController,
             ctx.viewController(forKey: .to)! as! ArticleDetailsVC
         )
 
