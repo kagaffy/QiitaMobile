@@ -40,7 +40,7 @@ public final class TrendArticle {
         self.authorImageUrl = authorImageUrl
     }
 
-    static func load(_ list: [JSON]) -> [TrendArticle] {
+    public static func load(_ list: [JSON]) -> [TrendArticle] {
         return list.compactMap { TrendArticle($0) }
     }
 }
