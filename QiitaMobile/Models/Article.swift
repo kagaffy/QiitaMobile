@@ -15,7 +15,7 @@ public class Article {
     public var createdAt: DateInRegion
     public var updatedAt: DateInRegion
     public var url: URL
-    public var attributedText: NSAttributedString
+    public var bodyString: String
     public var isPrivate: Bool
     public var group: String?
     public var coediting: Bool
@@ -32,7 +32,7 @@ public class Article {
             let createdAt = DateInRegion(json["created_at"].stringValue),
             let updatedAt = DateInRegion(json["updated_at"].stringValue),
             let url = URL(string: json["url"].stringValue),
-            let attributedText = json["rendered_body"].string?.convertHtml(),
+            let bodyString = json["body"].string,
             let isPrivate = json["private"].bool,
             let coediting = json["coediting"].bool,
             let commentsCount = json["comments_count"].int,
@@ -45,7 +45,7 @@ public class Article {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.url = url
-        self.attributedText = attributedText
+        self.bodyString = bodyString
         self.isPrivate = isPrivate
         group = json["group"].string
         self.coediting = coediting

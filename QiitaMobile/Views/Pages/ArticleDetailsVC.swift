@@ -28,12 +28,12 @@ class ArticleDetailsVC: BaseViewController {
             }
             .disposed(by: disposeBag)
 
-        store.selectedArticleDetailsObservable
-            .subscribe { [weak self] in
-                guard let article = $0.element else { return }
-                self?.textView.attributedText = article?.attributedText
-            }
-            .disposed(by: disposeBag)
+//        store.selectedArticleDetailsObservable
+//            .subscribe { [weak self] in
+//                guard let article = $0.element else { return }
+//                self?.textView.attributedText = article?.attributedText
+//            }
+//            .disposed(by: disposeBag)
 
         ActionCreator.fetchArticleDetails()
     }
