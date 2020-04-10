@@ -3,6 +3,7 @@ PODS:
   - Kingfisher (5.13.3):
     - Kingfisher/Core (= 5.13.3)
   - Kingfisher/Core (5.13.3)
+  - markymark (9.2.1)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -16,6 +17,7 @@ PODS:
 DEPENDENCIES:
   - HydraAsync
   - Kingfisher (~> 5.0)
+  - markymark
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
   - SwiftDate (~> 6.0)
@@ -26,6 +28,7 @@ SPEC REPOS:
   trunk:
     - HydraAsync
     - Kingfisher
+    - markymark
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -36,6 +39,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   HydraAsync: 690b8c1c9dcde7ee1093cee363a6c1ce36b56a83
   Kingfisher: d2b3d6a7200c93b34de9afcdf25c8dd9282ec277
+  markymark: e7fa1cdb7ad51c21a46cda308ad8ef4511fa49f6
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
@@ -43,6 +47,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 226f259067268a452772fc2bd635bbcecb5ecb09
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 3c7db3b1486fe1be58840690131e707c2dd3ca8e
+PODFILE CHECKSUM: 76b743529d681b2b1e06ee1c01ca3b239608841d
 
 COCOAPODS: 1.9.1
