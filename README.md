@@ -1,2 +1,1 @@
 # QiitaMobile
-test
