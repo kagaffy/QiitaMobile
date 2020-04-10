@@ -12,6 +12,7 @@ import UIKit
 class ArticleDetailsVC: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var cardContentView: ArticleCardContentView!
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var cardBottomToRootBottomConstraint: NSLayoutConstraint!
 
     private let store: TrendArticlesStore = .shared
@@ -20,11 +21,20 @@ class ArticleDetailsVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupContentView()
-    }
+        store.selectedArticleObservable
+            .subscribe { [weak self] in
+                guard let article = $0.element?.1 else { return }
+                self?.cardContentView.loadView(article: article)
+            }
+            .disposed(by: disposeBag)
 
-    private func setupContentView() {
-        guard let article = store.selectedArticle else { return }
-        cardContentView.loadView(article: article)
+        store.selectedArticleDetailsObservable
+            .subscribe { [weak self] in
+                guard let article = $0.element else { return }
+                self?.textView.attributedText = article?.attributedText
+            }
+            .disposed(by: disposeBag)
+
+        ActionCreator.fetchArticleDetails()
     }
 }

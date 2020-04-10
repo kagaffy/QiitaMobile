@@ -15,6 +15,7 @@ final class TrendArticlesStore {
     private let _weeklyTrendArticles = BehaviorRelay<[TrendArticle]>(value: [])
     private let _monthlyTrendArticles = BehaviorRelay<[TrendArticle]>(value: [])
     private let _selectedCard = BehaviorRelay<(ArticleCardCell?, TrendArticle?)>(value: (nil, nil))
+    private let _selectedArticleDetails = BehaviorRelay<Article?>(value: nil)
 
     private let disposeBag = DisposeBag()
 
@@ -28,6 +29,9 @@ final class TrendArticlesStore {
 
             case let .showArticleDetails(cell, article):
                 self._selectedCard.accept((cell, article))
+
+            case let .addArticleDetails(article):
+                self._selectedArticleDetails.accept(article)
 
             default: break
             }
@@ -60,6 +64,10 @@ extension TrendArticlesStore {
     var selectedCell: ArticleCardCell? {
         return _selectedCard.value.0
     }
+
+    var selectedArticleDetails: Article? {
+        return _selectedArticleDetails.value
+    }
 }
 
 //
@@ -81,5 +89,9 @@ extension TrendArticlesStore {
 
     var selectedArticleObservable: Observable<(ArticleCardCell?, TrendArticle?)> {
         return _selectedCard.asObservable()
+    }
+
+    var selectedArticleDetailsObservable: Observable<Article?> {
+        return _selectedArticleDetails.asObservable()
     }
 }

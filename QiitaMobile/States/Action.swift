@@ -8,4 +8,5 @@
 enum Action {
     case addTrendArticles([TrendArticle])
     case showArticleDetails(ArticleCardCell, TrendArticle)
+    case addArticleDetails(Article)
 }

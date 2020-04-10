@@ -55,3 +55,15 @@ public class Article {
         tags = ArticleTag.load(json["tags"].arrayValue)
     }
 }
+
+public class GetArticleDetails: PromiseOperation<Article?> {
+    public init(id: String) {
+        super.init()
+
+        url = URL(string: "https://qiita.com/api/v2/items/\(id)")!
+
+        jsonResponse = { json in
+            Article(json)
+        }
+    }
+}
