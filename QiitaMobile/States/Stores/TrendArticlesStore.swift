@@ -33,6 +33,10 @@ final class TrendArticlesStore {
             case let .addArticleDetails(article):
                 self._selectedArticleDetails.accept(article)
 
+            case .removeSelectedArticle:
+                self._selectedCard.accept((nil, nil))
+                self._selectedArticleDetails.accept(nil)
+
             default: break
             }
         }

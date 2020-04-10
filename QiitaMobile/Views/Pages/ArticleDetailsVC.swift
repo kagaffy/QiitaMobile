@@ -37,4 +37,10 @@ class ArticleDetailsVC: BaseViewController {
 
         ActionCreator.fetchArticleDetails()
     }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        ActionCreator.disappearDetailsPage()
+    }
 }

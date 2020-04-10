@@ -26,4 +26,8 @@ final class ActionCreator {
             dispatcher.dispatch(.addArticleDetails(article))
         }
     }
+
+    static func disappearDetailsPage(store: TrendArticlesStore = .shared) {
+        dispatcher.dispatch(.removeSelectedArticle)
+    }
 }
