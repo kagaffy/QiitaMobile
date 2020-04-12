@@ -23,7 +23,7 @@ class QiitaTabBarController: UITabBarController {
         .init(
             title: "検索",
             image: #imageLiteral(resourceName: "search"),
-            rootVC: UIViewController()
+            rootVC: ArticleSearchVC()
         ),
         .init(
             title: "LGTM",
