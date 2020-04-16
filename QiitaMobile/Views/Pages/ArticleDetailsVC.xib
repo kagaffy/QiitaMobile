@@ -11,8 +11,8 @@
             <connections>
                 <outlet property="cardBottomToRootBottomConstraint" destination="kNq-ja-wF3" id="iP9-Ql-bVK"/>
                 <outlet property="cardContentView" destination="n9W-co-XUb" id="HW4-kP-DVr"/>
+                <outlet property="mdView" destination="JFf-pr-Rdr" id="L0L-ob-0fl"/>
                 <outlet property="scrollView" destination="Qna-cl-GYH" id="M4n-LS-Edi"/>
-                <outlet property="textView" destination="UeE-x0-qZd" id="nyL-q3-Obg"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -46,34 +46,21 @@
                                         <constraint firstAttribute="height" constant="80" id="Yet-zc-xTv"/>
                                     </constraints>
                                 </view>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UeE-x0-qZd">
-                                    <rect key="frame" x="0.0" y="80" width="375" height="1163.6666666666667"/>
+                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFf-pr-Rdr" customClass="MarkdownView" customModule="MarkdownView">
+                                    <rect key="frame" x="0.0" y="100" width="414" height="900"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                    <mutableString key="text">台湾を1週間歩き回ったが、しばしば思うことがあった。それは、台湾の空気が白っぽい、ということだ。そこで、台湾の大気汚染について、台湾人の日常生活と関連づけてまとめた。
-
-そもそも、空気の色以外にも大気汚染の裏付けとなるような発見をいくつかした。バイクの数が多いこと、タクシーやバスの運転が荒いこと、自転車が全然走っていないこと、そして洗濯物が見当たらないことだ。最初の3つが大気汚染の原因となりうることは予想できるかもしれない。最後の洗濯物については、外干ししている家が見当たらないと言う意味だ。これはかなり偏見じみているのだが、おそらく、大気汚染が酷くて外干ししたくないのだと推測した。以下、調べた結果について記述する。
-
-まず、大気汚染の原因についてだが、大きく分けて3つある。交通汚染、工業汚染、大陸からの季節風だ。それぞれが3分の1の割合である。台湾の電気は主に火力発電によって賄われているため、大気汚染の大きな要因となっている。しかし、火力発電を減らし、再生可能エネルギーの比率を上げると言う目標を掲げている。ちなみに、写真は高雄で撮った1枚だが、この辺りは工場が密集している地帯である。また、冬季季節風の影響で、中国大陸からのスモッグの飛来も原因として挙げられる。そのため、台湾の大気汚染は冬場がピークを迎える。
-
-次に、バイクの保有率についてだが、台湾でのバイクの総保有台数は1,270万台であり、これは日本とほぼ変わらない。割合で言うと、1.8人に1台といったところだ(日本は9.7人に1台)。バイクの密度がかなり大きいが、これは日本と比べて鉄道が少なく移動が不便であるという背景があると考えられる。また、バスやタクシーは全体的に急発進、急停車が多かった印象があるが、そのような運転は燃費を低下させる。そのため、交通量と運転方法が大気汚染の大きな要因となったのだろう。
-
-最後に、洗濯物についてだ。台湾では洗濯物は除湿器を用いて室内に干している。外に干さない理由は大気汚染によるものもあったのだが、それ以外にも、湿度が高くてなかなか乾かない、それによって臭いやすくなってしまう、夏は日差しが強すぎてパリパリになってしまう、などの理由があった。
-
-台湾と日本は別の国であるため、当然異なる点がいくつもあった。今まではそれを単なる文化の違いで片付けていたが、深く考えてみると、その文化の違いは交通の便や環境の要因が深く結びついているのだと分かり、今回の旅はそれに気づく良い経験となった。</mutableString>
-                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstItem="n9W-co-XUb" firstAttribute="top" secondItem="xXF-mA-tK6" secondAttribute="top" id="1r2-FV-4y9"/>
-                                <constraint firstItem="n9W-co-XUb" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" constant="20" id="Kgg-Na-mkF"/>
-                                <constraint firstItem="UeE-x0-qZd" firstAttribute="top" secondItem="n9W-co-XUb" secondAttribute="bottom" id="ZgE-kF-w1Q"/>
-                                <constraint firstItem="UeE-x0-qZd" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" id="jgC-On-V7G"/>
-                                <constraint firstAttribute="bottom" secondItem="UeE-x0-qZd" secondAttribute="bottom" id="mYd-nO-x7O"/>
-                                <constraint firstAttribute="trailing" secondItem="UeE-x0-qZd" secondAttribute="trailing" id="y43-NA-4hl"/>
-                                <constraint firstAttribute="trailing" secondItem="n9W-co-XUb" secondAttribute="trailing" constant="20" id="y6d-tf-5Ui"/>
+                                <constraint firstAttribute="bottom" secondItem="JFf-pr-Rdr" secondAttribute="bottom" id="Dd1-Am-gJp"/>
+                                <constraint firstItem="n9W-co-XUb" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" id="Kgg-Na-mkF"/>
+                                <constraint firstAttribute="height" constant="1000" placeholder="YES" id="blO-6o-cTy"/>
+                                <constraint firstAttribute="trailing" secondItem="JFf-pr-Rdr" secondAttribute="trailing" id="eCn-3n-HPZ"/>
+                                <constraint firstItem="JFf-pr-Rdr" firstAttribute="top" secondItem="n9W-co-XUb" secondAttribute="bottom" id="uC8-97-sgI"/>
+                                <constraint firstAttribute="trailing" secondItem="n9W-co-XUb" secondAttribute="trailing" id="y6d-tf-5Ui"/>
+                                <constraint firstItem="JFf-pr-Rdr" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" id="zmf-XA-AxD"/>
                             </constraints>
                         </view>
                     </subviews>

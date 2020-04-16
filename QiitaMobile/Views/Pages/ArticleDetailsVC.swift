@@ -13,7 +13,7 @@ import UIKit
 class ArticleDetailsVC: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var cardContentView: ArticleCardContentView!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var mdView: MarkdownView!
     @IBOutlet weak var cardBottomToRootBottomConstraint: NSLayoutConstraint!
     private let mdView: MarkdownView = .init()
 
@@ -37,6 +37,13 @@ class ArticleDetailsVC: BaseViewController {
             .subscribe { [weak self] in
                 guard let article = $0.element?.1 else { return }
                 self?.cardContentView.loadView(article: article)
+            }
+            .disposed(by: disposeBag)
+
+        store.selectedArticleDetailsObservable
+            .subscribe { [weak self] in
+                guard let article = $0.element else { return }
+                self?.mdView.load(markdown: article?.bodyString)
             }
             .disposed(by: disposeBag)
 
