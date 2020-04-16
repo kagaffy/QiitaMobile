@@ -46,8 +46,8 @@
                                         <constraint firstAttribute="height" constant="80" id="Yet-zc-xTv"/>
                                     </constraints>
                                 </view>
-                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFf-pr-Rdr" customClass="MarkdownView" customModule="MarkdownView">
-                                    <rect key="frame" x="0.0" y="100" width="414" height="900"/>
+                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFf-pr-Rdr" customClass="MarkDownTextView" customModule="markymark">
+                                    <rect key="frame" x="15" y="100" width="384" height="900"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </view>
                             </subviews>
@@ -57,10 +57,10 @@
                                 <constraint firstAttribute="bottom" secondItem="JFf-pr-Rdr" secondAttribute="bottom" id="Dd1-Am-gJp"/>
                                 <constraint firstItem="n9W-co-XUb" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" id="Kgg-Na-mkF"/>
                                 <constraint firstAttribute="height" constant="1000" placeholder="YES" id="blO-6o-cTy"/>
-                                <constraint firstAttribute="trailing" secondItem="JFf-pr-Rdr" secondAttribute="trailing" id="eCn-3n-HPZ"/>
+                                <constraint firstAttribute="trailing" secondItem="JFf-pr-Rdr" secondAttribute="trailing" constant="15" id="eCn-3n-HPZ"/>
                                 <constraint firstItem="JFf-pr-Rdr" firstAttribute="top" secondItem="n9W-co-XUb" secondAttribute="bottom" id="uC8-97-sgI"/>
                                 <constraint firstAttribute="trailing" secondItem="n9W-co-XUb" secondAttribute="trailing" id="y6d-tf-5Ui"/>
-                                <constraint firstItem="JFf-pr-Rdr" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" id="zmf-XA-AxD"/>
+                                <constraint firstItem="JFf-pr-Rdr" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" constant="15" id="zmf-XA-AxD"/>
                             </constraints>
                         </view>
                     </subviews>

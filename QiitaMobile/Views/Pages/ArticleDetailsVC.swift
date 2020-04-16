@@ -5,7 +5,7 @@
 //  Created by Tsukada Yoshiki on 2020/04/05.
 //
 
-import MarkdownView
+import markymark
 import RxCocoa
 import RxSwift
 import UIKit
@@ -13,7 +13,7 @@ import UIKit
 class ArticleDetailsVC: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var cardContentView: ArticleCardContentView!
-    @IBOutlet weak var mdView: MarkdownView!
+    @IBOutlet weak var mdView: MarkDownTextView!
     @IBOutlet weak var cardBottomToRootBottomConstraint: NSLayoutConstraint!
     private let mdView: MarkdownView = .init()
 
@@ -23,16 +23,8 @@ class ArticleDetailsVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        store.selectedArticleDetailsObservable
-//            .subscribe { [weak self] in
-//                guard let `self` = self else { return }
-//                guard let article = $0.element else { return }
-//
-//                self.mdView.load(markdown: article?.bodyString)
-//                self.mdView.frame = self.view.bounds
-//                self.view.addSubview(self.mdView)
-//            }
-//            .disposed(by: disposeBag)
+        QiitaMarkDownStyling.apply(to: mdView)
+
         store.selectedArticleObservable
             .subscribe { [weak self] in
                 guard let article = $0.element?.1 else { return }
@@ -43,7 +35,8 @@ class ArticleDetailsVC: BaseViewController {
         store.selectedArticleDetailsObservable
             .subscribe { [weak self] in
                 guard let article = $0.element else { return }
-                self?.mdView.load(markdown: article?.bodyString)
+                self?.mdView.text = article?.bodyString
+                print(article?.bodyString)
             }
             .disposed(by: disposeBag)
 
