@@ -63,7 +63,20 @@ class TrendArticlesVC: BaseViewController {
 //                    cell.unfreezeAnimations()
 //                })
                 let vc = ArticleDetailsVC()
-                self.navigationController?.pushViewController(vc, animated: true)
+                let transition: ZoomUpTransition? = .init(cell: cell)
+                vc.transitioningDelegate = transition
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true) { [cell] in
+                    cell.unfreezeAnimations()
+                }
+//                let vc = ArticleDetailsVC()
+//                let transition: ZoomUpTransition? = .init(cell: cell)
+//                let nvc = UINavigationController(rootViewController: vc)
+//                nvc.modalPresentationStyle = .fullScreen
+//                nvc.transitioningDelegate = transition
+//                self.present(nvc, animated: true) { [cell] in
+//                    cell.unfreezeAnimations()
+//                }
             })
     }()
 

@@ -23,14 +23,20 @@ class ArticleDetailsVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        store.selectedArticleDetailsObservable
+//        store.selectedArticleDetailsObservable
+//            .subscribe { [weak self] in
+//                guard let `self` = self else { return }
+//                guard let article = $0.element else { return }
+//
+//                self.mdView.load(markdown: article?.bodyString)
+//                self.mdView.frame = self.view.bounds
+//                self.view.addSubview(self.mdView)
+//            }
+//            .disposed(by: disposeBag)
+        store.selectedArticleObservable
             .subscribe { [weak self] in
-                guard let `self` = self else { return }
-                guard let article = $0.element else { return }
-
-                self.mdView.load(markdown: article?.bodyString)
-                self.mdView.frame = self.view.bounds
-                self.view.addSubview(self.mdView)
+                guard let article = $0.element?.1 else { return }
+                self?.cardContentView.loadView(article: article)
             }
             .disposed(by: disposeBag)
 
@@ -41,5 +47,9 @@ class ArticleDetailsVC: BaseViewController {
         super.viewDidDisappear(animated)
 
         ActionCreator.disappearDetailsPage()
+    }
+
+    @IBAction func dismissButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
