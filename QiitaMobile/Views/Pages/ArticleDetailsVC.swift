@@ -12,6 +12,7 @@ import UIKit
 
 class ArticleDetailsVC: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var cardContentView: ArticleCardContentView!
     @IBOutlet weak var mdView: MarkDownTextView!
     @IBOutlet weak var cardBottomToRootBottomConstraint: NSLayoutConstraint!
@@ -21,6 +22,8 @@ class ArticleDetailsVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupNavigationBar()
 
         QiitaMarkDownStyling.apply(to: mdView)
 
@@ -45,6 +48,11 @@ class ArticleDetailsVC: BaseViewController {
         super.viewDidDisappear(animated)
 
         ActionCreator.disappearDetailsPage()
+    }
+
+    private func setupNavigationBar() {
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
     }
 
     @IBAction func dismissButtonTapped(_ sender: Any) {

@@ -12,6 +12,7 @@
                 <outlet property="cardBottomToRootBottomConstraint" destination="kNq-ja-wF3" id="iP9-Ql-bVK"/>
                 <outlet property="cardContentView" destination="n9W-co-XUb" id="HW4-kP-DVr"/>
                 <outlet property="mdView" destination="JFf-pr-Rdr" id="L0L-ob-0fl"/>
+                <outlet property="navigationBar" destination="Wf2-uB-KBR" id="1SQ-hB-yDd"/>
                 <outlet property="scrollView" destination="Qna-cl-GYH" id="M4n-LS-Edi"/>
             </connections>
         </placeholder>
@@ -22,9 +23,10 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wf2-uB-KBR">
                     <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <items>
-                        <navigationItem title="Title" id="bLt-et-OXF">
-                            <barButtonItem key="leftBarButtonItem" image="xmark.circle.fill" catalog="system" id="rjg-Qk-VhS">
+                        <navigationItem id="bLt-et-OXF">
+                            <barButtonItem key="leftBarButtonItem" image="dismiss" id="rjg-Qk-VhS">
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="dismissButtonTapped:" destination="-1" id="CeX-n7-6U6"/>
@@ -40,14 +42,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9W-co-XUb" customClass="ArticleCardContentView" customModule="QiitaMobile" customModuleProvider="target">
-                                    <rect key="frame" x="10" y="0.0" width="355" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="80" id="Yet-zc-xTv"/>
+                                        <constraint firstAttribute="height" constant="100" id="Yet-zc-xTv"/>
                                     </constraints>
                                 </view>
                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JFf-pr-Rdr" customClass="MarkDownTextView" customModule="markymark">
-                                    <rect key="frame" x="0.0" y="80" width="375" height="920"/>
+                                    <rect key="frame" x="0.0" y="150" width="375" height="850"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </view>
                             </subviews>
@@ -55,11 +57,11 @@
                             <constraints>
                                 <constraint firstItem="n9W-co-XUb" firstAttribute="top" secondItem="xXF-mA-tK6" secondAttribute="top" id="1r2-FV-4y9"/>
                                 <constraint firstAttribute="bottom" secondItem="JFf-pr-Rdr" secondAttribute="bottom" id="Dd1-Am-gJp"/>
-                                <constraint firstItem="n9W-co-XUb" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" constant="10" id="Kgg-Na-mkF"/>
+                                <constraint firstItem="n9W-co-XUb" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" id="Kgg-Na-mkF"/>
                                 <constraint firstAttribute="height" constant="1000" placeholder="YES" id="blO-6o-cTy"/>
                                 <constraint firstAttribute="trailing" secondItem="JFf-pr-Rdr" secondAttribute="trailing" id="eCn-3n-HPZ"/>
-                                <constraint firstItem="JFf-pr-Rdr" firstAttribute="top" secondItem="n9W-co-XUb" secondAttribute="bottom" id="uC8-97-sgI"/>
-                                <constraint firstAttribute="trailing" secondItem="n9W-co-XUb" secondAttribute="trailing" constant="10" id="y6d-tf-5Ui"/>
+                                <constraint firstItem="JFf-pr-Rdr" firstAttribute="top" secondItem="n9W-co-XUb" secondAttribute="bottom" constant="50" id="uC8-97-sgI"/>
+                                <constraint firstAttribute="trailing" secondItem="n9W-co-XUb" secondAttribute="trailing" id="y6d-tf-5Ui"/>
                                 <constraint firstItem="JFf-pr-Rdr" firstAttribute="leading" secondItem="xXF-mA-tK6" secondAttribute="leading" id="zmf-XA-AxD"/>
                             </constraints>
                         </view>
@@ -91,6 +93,6 @@
         </view>
     </objects>
     <resources>
-        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="dismiss" width="32" height="32"/>
     </resources>
 </document>
