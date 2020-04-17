@@ -36,7 +36,6 @@ class ArticleDetailsVC: BaseViewController {
             .subscribe { [weak self] in
                 guard let article = $0.element else { return }
                 self?.mdView.text = article?.bodyString
-                print(article?.bodyString)
             }
             .disposed(by: disposeBag)
 

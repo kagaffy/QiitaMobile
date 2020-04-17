@@ -12,7 +12,7 @@ class QiitaMarkDownStyling {
         var s = ParagraphStyling()
         s.baseFont = UIFont(name: "HiraginoSans-W3", size: 14)
         s.textColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
-        s.contentInsets = .init(top: 0, left: 0, bottom: 15, right: 0)
+        s.contentInsets = .init(top: 0, left: 15, bottom: 15, right: 15)
         return s
     }()
 
@@ -32,18 +32,29 @@ class QiitaMarkDownStyling {
             #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1),
         ]
         s.contentInsetsForLevels = [
-            .init(top: 60, left: 0, bottom: 40, right: 20),
-            .init(top: 40, left: 0, bottom: 40, right: 20),
-            .init(top: 40, left: 0, bottom: 40, right: 20),
-            .init(top: 40, left: 0, bottom: 40, right: 20),
-            .init(top: 30, left: 0, bottom: 30, right: 0),
+            .init(top: 60, left: 15, bottom: 40, right: 35),
+            .init(top: 40, left: 15, bottom: 40, right: 35),
+            .init(top: 40, left: 15, bottom: 40, right: 35),
+            .init(top: 40, left: 15, bottom: 40, right: 35),
+            .init(top: 30, left: 15, bottom: 30, right: 15),
         ]
         return s
     }()
 
     public static var strikeThroughStyling = StrikeThroughStyling()
-    public static var listStyling = ListStyling()
-    public static var imageStyling = ImageStyling()
+    public static var listStyling: ListStyling = {
+        var s = ListStyling()
+        s.contentInsets = .init(top: 0, left: 15, bottom: 10, right: 25)
+        s.textColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
+        return s
+    }()
+
+    public static var imageStyling: ImageStyling = {
+        var s = ImageStyling()
+        s.contentInsets = .init(top: 0, left: 15, bottom: 10, right: 15)
+        return s
+    }()
+
     public static var linkStyling: LinkStyling = {
         var s = LinkStyling()
         s.textColor = #colorLiteral(red: 0.2901960784, green: 0.6745098039, blue: 0, alpha: 1)
@@ -58,6 +69,7 @@ class QiitaMarkDownStyling {
         var s = CodeBlockStyling()
         s.backgroundColor = #colorLiteral(red: 0.2117647059, green: 0.2705882353, blue: 0.2862745098, alpha: 1)
         s.textColor = #colorLiteral(red: 0.6156862745, green: 0.6705882353, blue: 0.6823529412, alpha: 1)
+        s.contentInsets = .init(top: 10, left: 20, bottom: 10, right: 10)
         return s
     }()
 
