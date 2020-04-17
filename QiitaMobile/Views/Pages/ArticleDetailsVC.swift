@@ -15,7 +15,6 @@ class ArticleDetailsVC: BaseViewController {
     @IBOutlet weak var cardContentView: ArticleCardContentView!
     @IBOutlet weak var mdView: MarkDownTextView!
     @IBOutlet weak var cardBottomToRootBottomConstraint: NSLayoutConstraint!
-    private let mdView: MarkdownView = .init()
 
     private let store: TrendArticlesStore = .shared
     private let disposeBag = DisposeBag()

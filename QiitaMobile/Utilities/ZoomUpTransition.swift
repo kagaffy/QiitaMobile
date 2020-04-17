@@ -75,18 +75,18 @@ class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewC
         // MARK: textView
         //
 
-        let textView = UITextView()
-        textView.font = UIFont(name: "HiraginoSans-W3", size: 15)
-        textView.text = text
-        textView.frame = containerView.convert(secondViewController.textView.frame, from: secondViewController.scrollView)
-        textView.frame.origin.y += 50
-        containerView.addSubview(textView)
-        textView.alpha = -1
+//        let textView = UITextView()
+//        textView.font = UIFont(name: "HiraginoSans-W3", size: 15)
+//        textView.text = text
+//        textView.frame = containerView.convert(secondViewController.textView.frame, from: secondViewController.scrollView)
+//        textView.frame.origin.y += 50
+//        containerView.addSubview(textView)
+//        textView.alpha = -1
 
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
             cardView.frame = containerView.convert(secondViewController.cardContentView.frame, from: secondViewController.scrollView)
-            textView.frame = containerView.convert(secondViewController.textView.frame, from: secondViewController.scrollView)
-            textView.alpha = 1
+//            textView.frame = containerView.convert(secondViewController.textView.frame, from: secondViewController.scrollView)
+//            textView.alpha = 1
         }, completion: { [cell] _ in
             secondViewController.view.alpha = 1
             // 遷移後のイメージを表示する
@@ -95,7 +95,7 @@ class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewC
             cell.articleCardContentView.isHidden = false
             // アニメーション用のビューを削除する
             cardView.removeFromSuperview()
-            textView.removeFromSuperview()
+//            textView.removeFromSuperview()
             transitionContext.completeTransition(true)
         })
 //        let options = UIView.KeyframeAnimationOptions(rawValue: UIView.AnimationOptions.curveEaseOut.rawValue)
