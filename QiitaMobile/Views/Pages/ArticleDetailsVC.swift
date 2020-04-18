@@ -13,6 +13,7 @@ import UIKit
 class ArticleDetailsVC: BaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var dismissButton: UIBarButtonItem!
     @IBOutlet weak var cardContentView: ArticleCardContentView!
     @IBOutlet weak var mdView: MarkDownTextView!
     @IBOutlet weak var cardBottomToRootBottomConstraint: NSLayoutConstraint!
@@ -41,6 +42,25 @@ class ArticleDetailsVC: BaseViewController {
             }
             .disposed(by: disposeBag)
 
+        scrollView.rx.didScroll
+            .subscribe(onNext: { [weak self] in
+                self?.changeCardContentViewScaleIfNeeded()
+                self?.setNavigationTitleIfNeeded()
+            })
+            .disposed(by: disposeBag)
+
+        scrollView.rx.willEndDragging
+            .subscribe(onNext: { [weak self] velocity, _ in
+                self?.dismissIfNeeded(velocity: velocity)
+            })
+            .disposed(by: disposeBag)
+
+        dismissButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+
         ActionCreator.fetchArticleDetails()
     }
 
@@ -55,7 +75,27 @@ class ArticleDetailsVC: BaseViewController {
         navigationBar.shadowImage = UIImage()
     }
 
-    @IBAction func dismissButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    private func setNavigationTitleIfNeeded() {
+        if scrollView.contentOffset.y > cardContentView.bounds.height {
+            navigationBar.items?.first?.title = store.selectedArticle?.title
+        } else {
+            navigationBar.items?.first?.title = nil
+        }
+    }
+
+    private func changeCardContentViewScaleIfNeeded() {
+        guard scrollView.contentOffset.y < 0 else { return }
+
+        let width = cardContentView.bounds.width
+        let scale: CGFloat = (width - scrollView.contentOffset.y) / width
+        cardContentView.transform = .init(scaleX: scale, y: scale)
+    }
+
+    private func dismissIfNeeded(velocity: CGPoint) {
+        guard scrollView.contentOffset.y < 0 else { return }
+
+        if velocity.y < 0 {
+            dismiss(animated: true)
+        }
     }
 }
