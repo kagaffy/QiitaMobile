@@ -80,7 +80,6 @@ class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewC
         navBar.shadowImage = UIImage()
         navBar.frame = containerView.convert(secondViewController.navigationBar.frame, from: secondViewController.view)
         navBar.frame.origin.y -= navBar.frame.height
-        print(navBar.frame)
         let navItem = UINavigationItem()
         navItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "dismiss"), style: .plain, target: nil, action: nil)
         navItem.leftBarButtonItem?.tintColor = .lightGray
@@ -88,9 +87,21 @@ class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewC
         containerView.addSubview(navBar)
         navItem.leftBarButtonItem?.imageInsets = .init(top: 0, left: 8, bottom: 0, right: 0)
 
+        //
+        // MARK: MarkDownTextView
+        //
+
+        let mdView = UIView()
+        mdView.backgroundColor = .white
+        mdView.frame = containerView.convert(secondViewController.mdView.frame, from: secondViewController.scrollView)
+        mdView.frame.origin.y -= 50 // 50 is top space
+        mdView.alpha = -1
+        containerView.addSubview(mdView)
+
         UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
             cardView.frame = containerView.convert(secondViewController.cardContentView.frame, from: secondViewController.scrollView)
             navBar.frame = containerView.convert(secondViewController.navigationBar.frame, from: secondViewController.view)
+            mdView.alpha = 1
         }, completion: { [cell] _ in
             secondViewController.view.alpha = 1
             // 遷移後のイメージを表示する
@@ -100,6 +111,7 @@ class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewC
             // アニメーション用のビューを削除する
             cardView.removeFromSuperview()
             navBar.removeFromSuperview()
+            mdView.removeFromSuperview()
             transitionContext.completeTransition(true)
         })
     }
