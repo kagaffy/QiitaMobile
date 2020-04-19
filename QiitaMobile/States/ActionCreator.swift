@@ -41,4 +41,8 @@ final class ActionCreator {
     static func didTapCancelButton() {
         dispatcher.dispatch(.clearSearchResults)
     }
+
+    static func didClearQuery() {
+        dispatcher.dispatch(.clearSearchResults)
+    }
 }

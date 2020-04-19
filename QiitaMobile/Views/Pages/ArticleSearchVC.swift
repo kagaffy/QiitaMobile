@@ -22,53 +22,75 @@ class ArticleSearchVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        searchBar.delegate = self
+        setupNavigationBar()
+        setupSearchBar()
 
         dataSource.configure(collectionView)
-
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        searchBar.backgroundImage = UIImage()
 
         store.searchResultArticlesObservable
             .bind(to: Binder(collectionView) { collectionView, _ in
                 collectionView.reloadData()
             })
             .disposed(by: disposeBag)
+
+        searchBar.rx.text
+            .filter { $0 == "" }
+            .subscribe(onNext: { _ in
+                ActionCreator.didClearQuery()
+            })
+            .disposed(by: disposeBag)
+
+        searchBar.rx.textDidBeginEditing
+            .subscribe(onNext: { [weak self] in
+                self?.searchBarAnimate(isHidden: true)
+            })
+            .disposed(by: disposeBag)
+
+        searchBar.rx.cancelButtonClicked
+            .subscribe(onNext: { [weak self] in
+                self?.cancelButtonClicked()
+            })
+            .disposed(by: disposeBag)
+
+        searchBar.rx.searchButtonClicked
+            .subscribe(onNext: { [weak self] in
+                self?.searchButtonClicked()
+            })
+            .disposed(by: disposeBag)
     }
-}
 
-extension ArticleSearchVC: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {}
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
 
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        searchBar.setShowsCancelButton(true, animated: true)
-        UIView.animate(withDuration: 0.3, delay: 0, animations: { [weak self] in
-            self?.searchBarBottomBorder.alpha = 1
-            self?.searchLabel.isHidden = true
-            self?.searchLabel.alpha = 0
+    private func setupSearchBar() {
+        searchBar.backgroundImage = UIImage()
+    }
+
+    private func searchBarAnimate(isHidden: Bool) {
+        navigationController?.setNavigationBarHidden(isHidden, animated: true)
+        searchBar.setShowsCancelButton(isHidden, animated: true)
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.searchBarBottomBorder.alpha = isHidden ? 1 : 0
+            self?.searchLabel.isHidden = isHidden
+            self?.searchLabel.alpha = isHidden ? 0 : 1
         })
-        return true
     }
 
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    private func cancelButtonClicked() {
+        searchBar.text = nil
         ActionCreator.didTapCancelButton()
         searchBar.resignFirstResponder()
         searchLabel.alpha = -1
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        searchBar.setShowsCancelButton(false, animated: true)
-        UIView.animate(withDuration: 0.3, delay: 0, animations: { [weak self] in
-            self?.searchBarBottomBorder.alpha = 0
-            self?.searchLabel.isHidden = false
-            self?.searchLabel.alpha = 1
-        })
+        searchBarAnimate(isHidden: false)
     }
 
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    private func searchButtonClicked() {
         guard let term = searchBar.text else { return }
 
         ActionCreator.fetchSearchResults(by: term)
         searchBar.resignFirstResponder()
+        searchBar.setShowsCancelButton(false, animated: true)
     }
 }
