@@ -14,7 +14,6 @@ target 'QiitaMobile' do
   pod 'Kingfisher', '~> 5.0'
   pod 'HydraAsync'
   pod 'markymark'
-  pod 'MarkdownView'
 
   target 'QiitaMobileTests' do
     inherit! :search_paths
