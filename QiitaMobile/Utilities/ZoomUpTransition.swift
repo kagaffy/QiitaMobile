@@ -9,9 +9,9 @@ import UIKit
 
 class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
     fileprivate var isPresent = false
-    fileprivate let cell: ArticleCardCell
+    fileprivate let cell: ArticleCardCell?
 
-    init(cell: ArticleCardCell) {
+    init(cell: ArticleCardCell? = nil) {
         self.cell = cell
     }
 
@@ -37,12 +37,14 @@ class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewC
         if isPresent {
             presentTransition(transitionContext: transitionContext)
         } else {
-//            dissmissalTransition(transitionContext: transitionContext)
+            dissmissalTransition(transitionContext: transitionContext)
         }
     }
 
     // 遷移時のTrastion処理
     func presentTransition(transitionContext: UIViewControllerContextTransitioning) {
+        guard let cell = cell else { return }
+
         // 遷移元、遷移先及び、遷移コンテナの取得
         let secondViewController = transitionContext.viewController(forKey: .to) as! ArticleDetailsVC
         let containerView = transitionContext.containerView
@@ -116,8 +118,8 @@ class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewC
         })
     }
 
-//    // 復帰時のTrastion処理
-//    func dissmissalTransition(transitionContext: UIViewControllerContextTransitioning) {
+    // 復帰時のTrastion処理
+    func dissmissalTransition(transitionContext: UIViewControllerContextTransitioning) {
 //        // 遷移元、遷移先及び、遷移コンテナの取得
 //        let secondViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! SecondViewController
 //        let firstViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! FirstViewController
@@ -157,5 +159,48 @@ class ZoomUpTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewC
 //            cell.photoView.isHidden = false
 //            transitionContext.completeTransition(true)
 //        })
-//    }
+        let detailsVC = transitionContext.viewController(forKey: .from) as! ArticleDetailsVC
+        let containerView = transitionContext.containerView
+
+        let navBar = UINavigationBar()
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        navBar.frame = containerView.convert(detailsVC.navigationBar.frame, from: detailsVC.view)
+        let navItem = UINavigationItem()
+        navItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "dismiss"), style: .plain, target: nil, action: nil)
+        navItem.leftBarButtonItem?.tintColor = .lightGray
+        navItem.leftBarButtonItem?.imageInsets = .init(top: 0, left: 8, bottom: 0, right: 0)
+        navBar.pushItem(navItem, animated: false)
+        containerView.addSubview(navBar)
+
+        let cardView = ArticleCardContentView()
+        guard let article = TrendArticlesStore.shared.selectedArticle else { return }
+        cardView.loadView(article: article)
+        cardView.frame = containerView.convert(detailsVC.cardContentView.frame, from: detailsVC.scrollView)
+        containerView.addSubview(cardView)
+
+        let mdView = detailsVC.mdView
+
+        detailsVC.view.isHidden = true
+
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveEaseOut], animations: {
+            navBar.frame.origin.y -= navBar.bounds.height
+            cardView.frame.origin.y += containerView.bounds.height
+            mdView?.frame.origin.y += containerView.bounds.height
+            cardView.alpha = 0
+            mdView?.alpha = 0
+        }, completion: { _ in
+            navBar.removeFromSuperview()
+            cardView.removeFromSuperview()
+            mdView?.removeFromSuperview()
+            transitionContext.completeTransition(true)
+        })
+    }
+}
+
+extension NSObject {
+    func copyObject<T: NSObject>() throws -> T? {
+        let data = try NSKeyedArchiver.archivedData(withRootObject: self, requiringSecureCoding: false)
+        return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? T
+    }
 }
