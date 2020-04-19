@@ -48,4 +48,13 @@ class ArticleCardContentView: UIView {
         authorNameLabel.text = "@\(article.authorName)"
         likesCountLabel.text = String(article.likesCount)
     }
+
+    func loadView(article: Article) {
+        authorImageView.image = nil
+        authorImageView.kf.setImage(with: article.author.profileImageUrl)
+        titleLabel.text = article.title
+        newLabel.isHidden = true
+        authorNameLabel.text = "@\(article.author.name)"
+        likesCountLabel.text = String(article.likesCount)
+    }
 }

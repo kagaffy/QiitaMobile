@@ -19,6 +19,7 @@ public class Article {
     public var isPrivate: Bool
     public var group: String?
     public var coediting: Bool
+    public var likesCount: Int
     public var commentsCount: Int
     public var reactionsCount: Int
     public var pageViewsCount: Int?
@@ -35,6 +36,7 @@ public class Article {
             let bodyString = json["body"].string,
             let isPrivate = json["private"].bool,
             let coediting = json["coediting"].bool,
+            let likesCount = json["likes_count"].int,
             let commentsCount = json["comments_count"].int,
             let reactionsCount = json["reactions_count"].int
         else { return nil }
@@ -49,10 +51,15 @@ public class Article {
         self.isPrivate = isPrivate
         group = json["group"].string
         self.coediting = coediting
+        self.likesCount = likesCount
         self.commentsCount = commentsCount
         self.reactionsCount = reactionsCount
         pageViewsCount = json["page_views_count"].int
         tags = ArticleTag.load(json["tags"].arrayValue)
+    }
+
+    public static func load(_ list: [JSON]) -> [Article] {
+        return list.compactMap { Article($0) }
     }
 }
 
@@ -64,6 +71,18 @@ public class GetArticleDetails: PromiseOperation<Article?> {
 
         jsonResponse = { json in
             Article(json)
+        }
+    }
+}
+
+public class GetArticles: PromiseOperation<[Article]> {
+    public init(query: String, page: Int = 1, perPage: Int = 30) {
+        super.init()
+
+        url = URL(string: "https://qiita.com/api/v2/items?page=\(page)&per_page=\(perPage)&query=\(query.urlEncoded)")!
+
+        jsonResponse = { json in
+            Article.load(json.arrayValue)
         }
     }
 }

@@ -30,6 +30,10 @@ class ArticleCardCell: UICollectionViewCell, CollectionViewCellPresenter {
         articleCardContentView.loadView(article: article)
     }
 
+    func apply(article: Article) {
+        articleCardContentView.loadView(article: article)
+    }
+
     func resetTransform() {
         transform = .identity
     }

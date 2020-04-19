@@ -30,4 +30,15 @@ final class ActionCreator {
     static func disappearDetailsPage(store: TrendArticlesStore = .shared) {
         dispatcher.dispatch(.removeSelectedArticle)
     }
+
+    static func fetchSearchResults(by term: String) {
+        dispatcher.dispatch(.clearSearchResults)
+        GetArticles(query: term).execute(in: .background).then(in: .main) { [dispatcher] articles in
+            dispatcher.dispatch(.addSearchResults(articles))
+        }
+    }
+
+    static func didTapCancelButton() {
+        dispatcher.dispatch(.clearSearchResults)
+    }
 }

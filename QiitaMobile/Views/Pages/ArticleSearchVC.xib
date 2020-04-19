@@ -9,6 +9,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ArticleSearchVC" customModule="QiitaMobile" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="1cX-oJ-GHU" id="rUy-OM-fhQ"/>
+                <outlet property="searchBar" destination="LV4-af-B02" id="vT9-xJ-icd"/>
+                <outlet property="searchBarBottomBorder" destination="4km-9k-9VJ" id="EDM-TB-GhQ"/>
                 <outlet property="searchLabel" destination="q9A-nI-umZ" id="bSo-u1-ygK"/>
             </connections>
         </placeholder>
@@ -17,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Kof-5M-Ok0">
-                    <rect key="frame" x="0.0" y="44" width="414" height="116"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Kof-5M-Ok0">
+                    <rect key="frame" x="0.0" y="44" width="414" height="107"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  検索" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9A-nI-umZ">
                             <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
@@ -29,25 +32,45 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="LV4-af-B02">
-                            <rect key="frame" x="0.0" y="60" width="414" height="56"/>
+                        <searchBar contentMode="redraw" placeholder="キーワード検索" translatesAutoresizingMaskIntoConstraints="NO" id="LV4-af-B02">
+                            <rect key="frame" x="0.0" y="50" width="414" height="56"/>
                             <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="DfG-9J-9DF"/>
-                            </connections>
                         </searchBar>
+                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4km-9k-9VJ">
+                            <rect key="frame" x="0.0" y="106" width="414" height="1"/>
+                            <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="vuM-L9-m4y"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="4km-9k-9VJ" secondAttribute="trailing" id="1C1-yI-GLK"/>
                         <constraint firstAttribute="trailing" secondItem="LV4-af-B02" secondAttribute="trailing" id="3JL-4a-Vhk"/>
                         <constraint firstItem="LV4-af-B02" firstAttribute="leading" secondItem="Kof-5M-Ok0" secondAttribute="leading" id="Mfu-7P-HhR"/>
+                        <constraint firstItem="4km-9k-9VJ" firstAttribute="leading" secondItem="Kof-5M-Ok0" secondAttribute="leading" id="ZkH-UX-hui"/>
                     </constraints>
                 </stackView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1cX-oJ-GHU">
+                    <rect key="frame" x="0.0" y="151" width="414" height="711"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Oyr-to-6OJ">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="1cX-oJ-GHU" secondAttribute="trailing" id="EuB-KQ-dXJ"/>
                 <constraint firstItem="Kof-5M-Ok0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HCV-p7-X1m"/>
+                <constraint firstItem="1cX-oJ-GHU" firstAttribute="top" secondItem="Kof-5M-Ok0" secondAttribute="bottom" id="WQX-9J-LtU"/>
+                <constraint firstItem="1cX-oJ-GHU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="aVG-u1-GaP"/>
                 <constraint firstItem="Kof-5M-Ok0" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="bgY-rW-nQL"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kof-5M-Ok0" secondAttribute="trailing" id="lAT-jw-RV7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="1cX-oJ-GHU" secondAttribute="bottom" id="svd-bT-bCu"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="139" y="154"/>

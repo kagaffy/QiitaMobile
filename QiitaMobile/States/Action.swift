@@ -10,4 +10,6 @@ enum Action {
     case showArticleDetails(ArticleCardCell, TrendArticle)
     case addArticleDetails(Article)
     case removeSelectedArticle
+    case clearSearchResults
+    case addSearchResults([Article])
 }
