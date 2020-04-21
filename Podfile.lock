@@ -1,5 +1,6 @@
 PODS:
   - HydraAsync (2.0.2)
+  - Keys (1.0.1)
   - Kingfisher (5.13.3):
     - Kingfisher/Core (= 5.13.3)
   - Kingfisher/Core (5.13.3)
@@ -16,6 +17,7 @@ PODS:
 
 DEPENDENCIES:
   - HydraAsync
+  - Keys (from `Pods/CocoaPodsKeys`)
   - Kingfisher (~> 5.0)
   - markymark
   - RxCocoa (~> 5)
@@ -36,8 +38,13 @@ SPEC REPOS:
     - SwiftFormat
     - SwiftyJSON
 
+EXTERNAL SOURCES:
+  Keys:
+    :path: Pods/CocoaPodsKeys
+
 SPEC CHECKSUMS:
   HydraAsync: 690b8c1c9dcde7ee1093cee363a6c1ce36b56a83
+  Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   Kingfisher: d2b3d6a7200c93b34de9afcdf25c8dd9282ec277
   markymark: e7fa1cdb7ad51c21a46cda308ad8ef4511fa49f6
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
@@ -47,6 +54,6 @@ SPEC CHECKSUMS:
   SwiftFormat: 226f259067268a452772fc2bd635bbcecb5ecb09
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 76b743529d681b2b1e06ee1c01ca3b239608841d
+PODFILE CHECKSUM: e271f273e8a98707d6dfc1780412a35cc5d4c241
 
 COCOAPODS: 1.9.1

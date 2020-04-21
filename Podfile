@@ -23,4 +23,12 @@ target 'QiitaMobile' do
     inherit! :search_paths
   end
 
+  plugin 'cocoapods-keys', {
+    :project => 'QiitaMobile',
+    :keys => [
+      'clientId',
+      'clientSecret',
+    ]
+  }
+
 end
