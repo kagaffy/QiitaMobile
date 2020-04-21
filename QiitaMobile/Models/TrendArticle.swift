@@ -15,7 +15,7 @@ public final class TrendArticle {
     public var likesCount: Int
     public var isNew: Bool
     public var hasCodeBlock: Bool
-    public var authorName: String
+    public var authorId: String
     public var authorImageUrl: URL
 
     public init?(_ json: JSON) {
@@ -26,7 +26,7 @@ public final class TrendArticle {
             let likesCount = json["node"]["likesCount"].int,
             let isNew = json["isNewArrival"].bool,
             let hasCodeBlock = json["hasCodeBlock"].bool,
-            let authorName = json["node"]["author"]["urlName"].string,
+            let authorId = json["node"]["author"]["urlName"].string,
             let authorImageUrl = URL(string: json["node"]["author"]["profileImageUrl"].stringValue)
         else { return nil }
 
@@ -36,7 +36,7 @@ public final class TrendArticle {
         self.likesCount = likesCount
         self.isNew = isNew
         self.hasCodeBlock = hasCodeBlock
-        self.authorName = authorName
+        self.authorId = authorId
         self.authorImageUrl = authorImageUrl
     }
 
