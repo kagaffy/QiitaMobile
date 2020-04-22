@@ -28,6 +28,7 @@ target 'QiitaMobile' do
     :keys => [
       'clientId',
       'clientSecret',
+      'trendBaseUrl',
     ]
   }
 
