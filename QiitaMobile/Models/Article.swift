@@ -67,7 +67,10 @@ public class GetArticleDetails: PromiseOperation<Article?> {
     public init(id: String) {
         super.init()
 
-        url = URL(string: "https://qiita.com/api/v2/items/\(id)")!
+        request = Request(
+            endpoint: "/items/\(id)",
+            method: .get
+        )
 
         jsonResponse = { json in
             Article(json)
@@ -79,7 +82,10 @@ public class GetArticles: PromiseOperation<[Article]> {
     public init(query: String, page: Int = 1, perPage: Int = 30) {
         super.init()
 
-        url = URL(string: "https://qiita.com/api/v2/items?page=\(page)&per_page=\(perPage)&query=\(query.urlEncoded)")!
+        request = Request(
+            endpoint: "/items?page=\(page)&per_page=\(perPage)&query=\(query.urlEncoded)",
+            method: .get
+        )
 
         jsonResponse = { json in
             Article.load(json.arrayValue)
