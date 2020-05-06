@@ -33,7 +33,7 @@ class QiitaTabBarController: UITabBarController {
         .init(
             title: "マイページ",
             image: #imageLiteral(resourceName: "my_page"),
-            rootVC: UIViewController()
+            rootVC: MyPageVC()
         ),
     ]
 
