@@ -13,6 +13,7 @@ class QiitaMarkDownStyling {
         s.baseFont = UIFont(name: "HiraginoSans-W3", size: 14)
         s.textColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         s.contentInsets = .init(top: 0, left: 15, bottom: 15, right: 15)
+        s.lineHeight = 20
         return s
     }()
 
