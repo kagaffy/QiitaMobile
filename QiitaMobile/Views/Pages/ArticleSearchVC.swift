@@ -11,9 +11,15 @@ import UIKit
 
 class ArticleSearchVC: BaseViewController {
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var searchBarBottomBorder: UIView!
-    @IBOutlet weak var searchLabel: UILabel!
+
+    lazy var searchController: UISearchController = {
+        let sc = UISearchController(searchResultsController: nil)
+        sc.obscuresBackgroundDuringPresentation = false
+        sc.searchResultsUpdater = self
+        sc.searchBar.placeholder = "キーワードで検索"
+        sc.searchBar.enablesReturnKeyAutomatically = false
+        return sc
+    }()
 
     private let store: SearchArticlesStore = .shared
     private let dataSource: ArticleSearchDataSource = .init()
@@ -22,8 +28,7 @@ class ArticleSearchVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNavigationBar()
-        setupSearchBar()
+        setupNavigationItem()
 
         dataSource.configure(collectionView)
 
@@ -33,64 +38,38 @@ class ArticleSearchVC: BaseViewController {
             })
             .disposed(by: disposeBag)
 
-        searchBar.rx.text
-            .filter { $0 == "" }
-            .subscribe(onNext: { _ in
-                ActionCreator.didClearQuery()
-            })
-            .disposed(by: disposeBag)
-
-        searchBar.rx.textDidBeginEditing
-            .subscribe(onNext: { [weak self] in
-                self?.searchBarAnimate(isHidden: true)
-            })
-            .disposed(by: disposeBag)
-
-        searchBar.rx.cancelButtonClicked
+        searchController.searchBar.rx.cancelButtonClicked
             .subscribe(onNext: { [weak self] in
                 self?.cancelButtonClicked()
             })
             .disposed(by: disposeBag)
 
-        searchBar.rx.searchButtonClicked
+        searchController.searchBar.rx.searchButtonClicked
             .subscribe(onNext: { [weak self] in
                 self?.searchButtonClicked()
             })
             .disposed(by: disposeBag)
     }
 
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-    }
-
-    private func setupSearchBar() {
-        searchBar.backgroundImage = UIImage()
-    }
-
-    private func searchBarAnimate(isHidden: Bool) {
-        navigationController?.setNavigationBarHidden(isHidden, animated: true)
-        searchBar.setShowsCancelButton(isHidden, animated: true)
-        UIView.animate(withDuration: 0.3, animations: { [weak self] in
-            self?.searchBarBottomBorder.alpha = isHidden ? 1 : 0
-            self?.searchLabel.isHidden = isHidden
-            self?.searchLabel.alpha = isHidden ? 0 : 1
-        })
+    private func setupNavigationItem() {
+        navigationItem.title = "検索"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     private func cancelButtonClicked() {
-        searchBar.text = nil
         ActionCreator.didTapCancelButton()
-        searchBar.resignFirstResponder()
-        searchLabel.alpha = -1
-        searchBarAnimate(isHidden: false)
     }
 
     private func searchButtonClicked() {
-        guard let term = searchBar.text else { return }
+        guard let term = searchController.searchBar.text else { return }
 
         ActionCreator.fetchSearchResults(by: term)
-        searchBar.resignFirstResponder()
-        searchBar.setShowsCancelButton(false, animated: true)
     }
+}
+
+extension ArticleSearchVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {}
 }
