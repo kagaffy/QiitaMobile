@@ -30,6 +30,7 @@ class ArticleSearchVC: BaseViewController {
 
         setupNavigationItem()
 
+        collectionView.delaysContentTouches = false
         dataSource.configure(collectionView)
 
         store.searchResultArticlesObservable
